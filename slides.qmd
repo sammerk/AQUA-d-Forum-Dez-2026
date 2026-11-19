@@ -1,0 +1,102 @@
+---
+title: "FUN-Forum"
+subtitle: "AQUA-d Forum Dezember 2026"
+author: "Prof. Dr. Samuel Merk"
+# semester: "Wintersemester 2026/27"   # freier Text; alternativ date: last-modified
+date: last-modified
+execute:
+  echo: false
+format:
+  unitue-revealjs:
+    # Alle folgenden Optionen sind optional
+    footer: "Prof. Dr. Samuel Merk · AQUA-d Forum Dezember 2026"
+    embed-resources: false
+    controls: true
+    titel-qr: "https://uni-tuebingen.de"   # QR-Code statt Titelbild
+    # title-image: "../test.png"
+---
+
+```{r}
+#| label: setup
+#| include: false
+library(ggplot2)
+
+# Transparente Plots, damit der getönte Folienhintergrund durchscheint
+knitr::opts_chunk$set(dev.args = list(bg = "transparent"))
+theme_set(
+  theme_minimal(base_size = 16, base_family = "Arial") +
+    theme(plot.background = element_blank(), panel.background = element_blank())
+)
+
+# Kategoriale Palette nach CD der Universität Tübingen, CVD-optimierte Reihenfolge.
+# Ab 5 Gruppen zusätzlich Form oder Linientyp verwenden.
+ut_palette <- c(
+  karminrot = "#A51E37", mattgold = "#B4A069", anthrazit = "#32414B",
+  blau = "#0069AA", hellblau = "#50AAC8", violett = "#AF6E96",
+  ziegel = "#C8503C", ocker = "#D29600"
+)
+scale_colour_ut <- function(...) scale_colour_manual(values = unname(ut_palette), ...)
+scale_fill_ut <- function(...) scale_fill_manual(values = unname(ut_palette), ...)
+```
+
+# Kapiteltrennseite
+
+## Inhaltsfolie {.smaller}
+
+- Text linksbündig in Arial, Fließtext in Anthrazit {{< iconify octicon:rocket-16 >}}
+- Zweiter Stichpunkt mit [Hervorhebung]{.ut-rot}
+  - Unterpunkt der Ebene 2
+  - Noch ein Unterpunkt
+- Dritter Stichpunkt
+
+::: {.callout-note}
+Hinweise und Callouts nutzen die Sekundärfarben des CD.
+:::
+
+## Abbildung
+
+```{r}
+#| fig-width: 10
+#| fig-height: 4.8
+ggplot(mpg, aes(displ, hwy, colour = drv, shape = drv)) +
+  geom_point(size = 2.5, alpha = 0.8) +
+  scale_colour_ut() +
+  labs(x = "Hubraum (l)", y = "Verbrauch (mpg)", colour = "Antrieb", shape = "Antrieb")
+```
+
+## Zwei Spalten
+
+:::: {.columns}
+::: {.column width="50%"}
+**Links**
+
+- Argument A
+- Argument B
+:::
+::: {.column width="50%"}
+**Rechts**
+
+| Gruppe | M | SD |
+|---|---|---|
+| A | 3.2 | 0.8 |
+| B | 3.9 | 0.7 |
+:::
+::::
+
+# Quiz
+
+## Verständnisfrage {.smaller .quiz-slide}
+
+`webex.js` (genutzt von [exams2forms](https://www.r-exams.org/tutorials/exams2forms/))
+verträgt sich nicht mit reveal.js – siehe
+[dieser Stack-Overflow-Thread](https://stackoverflow.com/questions/79561442/exams2forms-in-quarto-reveal-js).
+Dynamische R/exams-Übungen werden deshalb **nicht** direkt in die Folie
+gerendert, sondern als eigenständige HTML-Seite im Ordner `aufgaben/` erzeugt
+und per `<iframe>` eingebettet (siehe `aufgaben/swisscapital.qmd` sowie
+[dieses Beispiel](https://github.com/sammerk/VL-Forschungsmethoden-SoSe25/blob/master/Block01-Methodologie/Folien/index.qmd)).
+Dazu muss `aufgaben/swisscapital.qmd` separat gerendert werden (z. B. `quarto
+render aufgaben/swisscapital.qmd`), bevor bzw. während die Folien gerendert werden.
+
+```{=html}
+<iframe src="aufgaben/swisscapital.html" title="Quizfrage"></iframe>
+```

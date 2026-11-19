@@ -1,0 +1,65 @@
+title: unitue
+author: Samuel Merk
+version: 0.1.0
+quarto-required: ">=1.4.0"
+contributes:
+  formats:
+    html:
+      lang: de
+      filters:
+        - unitue-lang.lua
+      toc: true
+      toc-location: left
+      toc-title: " "
+      code-fold: true
+      code-summary: "Code"
+      code-annotations: hover
+      smooth-scroll: true
+      title-block-banner: true
+      theme: [cosmo, unitue.scss]
+      css: [style.css, webex.css]
+      template-partials:
+        - title-block.html
+      include-after-body: [footer.html, webex.js]
+      logo: ut-logo.png
+    typst:
+      lang: de
+      filters:
+        - unitue-lang.lua
+      toc: false
+      keep-typ: false
+      papersize: a4
+      margin:
+        x: 20mm
+        y: 22mm
+      margin-geometry:
+        inner: {far: 20mm, width: 0mm, separation: 0mm}
+        outer: {far: 8mm, width: 55mm, separation: 7mm}
+        clearance: 8pt
+      fontsize: 10.5pt
+      font-paths: fonts
+      format-resources:
+        - ut-logo.png
+        - fonts/academicons.ttf
+        - fonts/LICENSE-academicons.txt
+      template-partials:
+        - typst-template.typ
+        - typst-show.typ
+        - page.typ
+      ut-logo: ut-logo.png
+      particles: false
+    revealjs:
+      lang: de
+      filters:
+        - unitue-lang.lua
+      theme: [default, unitue-revealjs.scss]
+      template-partials:
+        - title-slide.html
+      logo: ut-logo.png
+      title-image: alte-aula.jpg
+      title-image-alt: "Alte Aula der Universität Tübingen"
+      slide-number: true
+      transition: none
+      # Navigationspfeile (links/rechts unten) ein-/ausschalten:
+      # im Dokument mit `controls: false` überschreibbar
+      controls: true

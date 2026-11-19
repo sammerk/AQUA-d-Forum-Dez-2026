@@ -1,0 +1,136 @@
+---
+title: "Lorem ipsum dolor sit amet"
+subtitle: "Consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat."
+author:
+  - name: "Prof. Dr. Erstautorin"
+    orcid: 0000-0003-2594-5337
+    affiliation:
+      - name: "Eberhard Karls Universität Tübingen"
+        department: "Institut für Erziehungswissenschaft"
+        city: Tübingen
+        country: Deutschland
+        url: https://uni-tuebingen.de
+  - name: "Prof. Dr. Zweitautorin"
+    orcid: 0000-0003-2594-1234
+    affiliation:
+      - name: "Eberhard Karls Universität Tübingen"
+        department: "Institut für Erziehungswissenschaft"
+        city: Tübingen
+        country: Deutschland
+        url: https://uni-tuebingen.de
+lang: en
+date: last-modified
+license: "CC BY 4.0"
+format:
+  unitue-typst:
+    # Alle folgenden Optionen sind optional
+    particles: true           # statisches Netz in Mattgold im Titelbereich
+    particles-seed: 8        # andere Zahl = anderes Netz
+    # primary-color: "#0069AA"  # Akzentfarbe überschreiben
+---
+
+```{r}
+#| label: setup
+#| include: false
+library(ggplot2)
+
+ut_palette <- c(
+  karminrot = "#A51E37", mattgold = "#B4A069", anthrazit = "#32414B",
+  blau = "#0069AA", hellblau = "#50AAC8", violett = "#AF6E96",
+  ziegel = "#C8503C", ocker = "#D29600"
+)
+scale_colour_ut <- function(...) scale_colour_manual(values = unname(ut_palette), ...)
+scale_fill_ut <- function(...) scale_fill_manual(values = unname(ut_palette), ...)
+```
+
+## Lorem ipsum
+
+::: {.column-margin}
+*Stet clita kasd gubergren, no sea takimata sanctus est lorem ipsum dolor sit amet.*
+:::
+
+Lorem ipsum dolor sit amet, `consetetur` sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
+
+> Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Duis autem vel eum iriure dolor in [hendrerit](https://example.org) in vulputate velit esse molestie consequat.
+
+Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer possim assum.
+
+### Justo duo dolores
+
+```{r}
+#| label: fig-rand
+#| column: margin
+#| fig-cap: "Et ea rebum stet clita."
+#| fig-width: 3
+#| fig-height: 3
+ggplot(mpg, aes(displ, hwy)) +
+  geom_point(colour = ut_palette[["karminrot"]], alpha = 0.7) +
+  labs(x = "Lorem (l)", y = "Ipsum (mpg)") +
+  theme_minimal(base_family = "Arial")
+```
+
+
+## Dolor sit amet
+
+### Consetetur sadipscing
+
+```{r}
+#| label: fig-beispiel
+#| fig-cap: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr."
+ggplot(mpg, aes(displ, hwy, colour = drv, shape = drv)) +
+  geom_point(size = 2, alpha = 0.8) +
+  scale_colour_ut() +
+  labs(x = "Lorem (l)", y = "Ipsum (mpg)", colour = "Dolor", shape = "Dolor") +
+  theme_minimal(base_family = "Arial")
+```
+
+
+## Tempor invidunt
+
+```{r}
+knitr::kable(head(mtcars[, 1:5]))
+```
+
+## Eirmod tempor
+
+```{r}
+summary(mtcars$mpg)
+```
+
+
+
+### Magna aliquyam erat
+
+```{r}
+#| label: fig-voll
+#| column: page-right
+#| fig-cap: "Sed diam voluptua at vero eos et accusam."
+#| fig-width: 11
+#| fig-height: 3.5
+ggplot(mpg, aes(displ, hwy, colour = class)) +
+  geom_point(size = 2, alpha = 0.8) +
+  scale_colour_ut() +
+  facet_wrap(~drv, nrow = 1) +
+  labs(x = "Lorem (l)", y = "Ipsum (mpg)", colour = "Sit") +
+  theme_minimal(base_family = "Arial")
+```
+
+Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer possim assum. Lorem ipsum dolor sit amet, `consetetur` sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
+
+## Kasd gubergren
+
+::: {.callout-note}
+Lorem ipsum dolor sit amet, consetetur sadipscing elitr.
+:::
+
+::: {.callout-tip}
+Sed diam nonumy eirmod tempor invidunt ut labore.
+:::
+
+::: {.callout-important}
+At vero eos et accusam et justo duo dolores.
+:::
+
+::: {.callout-warning}
+Stet clita kasd gubergren, no sea takimata.
+:::
